@@ -48,7 +48,7 @@ public class RoundProgress extends View {
 		backColor = Color.rgb(0, 153, 204);
 		fillColor = Color.rgb(0,221,255);
 		progress = 50;
-		
+		rectF = new RectF(5, 5, getWidth()-5, getHeight()-5);
 	}
 	
 	/**
@@ -57,6 +57,7 @@ public class RoundProgress extends View {
 	 */
 	public void setBackColor(int backColor) {
 		this.backColor = backColor;
+		invalidate();
 	}
 	
 	/**
@@ -65,6 +66,7 @@ public class RoundProgress extends View {
 	 */
 	public void setFillColor(int fillColor) {
 		this.fillColor = fillColor;
+		invalidate();
 	}
 	
 	/**
@@ -78,12 +80,20 @@ public class RoundProgress extends View {
 		} else if(this.progress<0) {
 			this.progress = 0;
 		}
+		invalidate();
+	}
+	
+	@Override
+	protected void onLayout(boolean changed, int left, int top, int right,
+			int bottom) {
+		super.onLayout(changed, left, top, right, bottom);
+		rectF = new RectF(5, 5, getWidth()-5, getHeight()-5);
 	}
 		
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		rectF = new RectF(5, 5, getWidth()-5, getHeight()-5);
+		
 		paint.setColor(color.white);
 		canvas.drawPaint(paint);
 		paint.setAntiAlias(true);
