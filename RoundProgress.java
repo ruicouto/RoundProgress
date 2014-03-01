@@ -141,7 +141,7 @@ public class RoundProgress extends View {
 			int bottom) {
 		super.onLayout(changed, left, top, right, bottom);
 		int ht = thickness;
-		ht = ht-ht/2;
+		ht = ht-ht/2+2;
 		if(thickness%2!=0) ht-=1;
 		rectF = new RectF(ht, ht, getWidth()-ht, getHeight()-ht);
 	}
@@ -153,7 +153,7 @@ public class RoundProgress extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		
-		paint.setColor(color.white);
+		paint.setColor(Color.TRANSPARENT);
 		canvas.drawPaint(paint);
 		paint.setAntiAlias(true);
 			
